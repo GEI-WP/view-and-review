@@ -33,12 +33,7 @@ RUN python manage.py collectstatic --noinput --clear
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-FROM dev AS prod
 RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser .
 USER appuser
 
-# DEVELOPMENT IMAGE
-FROM base AS dev
-
-RUN apt update && \
-    apt install -y make
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "project.wsgi"]
