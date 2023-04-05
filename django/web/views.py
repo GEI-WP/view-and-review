@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 
 from web.models import Film 
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):    
+    return HttpResponse("Hello World!")
     films = Film.objects.all()
     context = {
         'films': films,
