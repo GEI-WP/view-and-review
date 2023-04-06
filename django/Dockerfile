@@ -25,9 +25,6 @@ RUN poetry config virtualenvs.create false && \
 # Copy files
 COPY . .
 
-# Propagate changes in database schema
-RUN python manage.py migrate --no-input
-
 # Collect the static files into STATIC_ROOT (settings.py)
 RUN python manage.py collectstatic --noinput --clear
 
@@ -35,5 +32,8 @@ RUN python manage.py collectstatic --noinput --clear
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser .
 USER appuser
+
+# Propagate changes in database schema
+ENTRYPOINT ["./entrypoint.sh"]
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "project.wsgi"]
