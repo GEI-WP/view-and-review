@@ -23,22 +23,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile-info">
-  <h1 id="profile-name">{{username}}</h1>
-  <div class="carousels">
-    {% url 'user-watchlist' username as watchlist_url %}
-    {% include 'web/carousel.html' with title='Watch List' id='watchlist' movies=watchlist url=watchlist_url only %}
-    
-    {% url 'user-favlist' username as favlist_url %}
-    {% include 'web/carousel.html' with title='Favorite List' id='favlist' movies=favlist url=favlist_url only %}
-  </div>
-  <div class="reviews-box">
-    <h2>Reviews</h2>
-    <div class="reviews">
-      {% for user_rating in user_ratings %}
-        {% include 'web/user-review.html' with rating=user_rating.rating show_movie=True movie=user_rating.movie movie_id=user_rating.movie.id %}
-      {% endfor %}
+<main>
+  <section>
+    <div class="profile-info">
+      <h1 id="profile-name">{{username}}</h1>
+      <section>
+        <div class="carousels">
+          {% url 'user-watchlist' username as watchlist_url %}
+          {% include 'web/carousel.html' with title='Watch List' id='watchlist' movies=watchlist url=watchlist_url only %}
+          
+          {% url 'user-favlist' username as favlist_url %}
+          {% include 'web/carousel.html' with title='Favorite List' id='favlist' movies=favlist url=favlist_url only %}
+        </div>
+      </section>
+      <section>
+        <div class="reviews-box">
+          <h2>Reviews</h2>
+          <div class="reviews">
+            {% for user_rating in user_ratings %}
+              {% include 'web/user-review.html' with rating=user_rating.rating show_movie=True movie=user_rating.movie movie_id=user_rating.movie.id %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 {% endblock %}
