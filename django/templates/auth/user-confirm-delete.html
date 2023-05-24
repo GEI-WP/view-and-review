@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content %}
-<form id="confirm-form" method="POST">
-  {% csrf_token %}
-
-  <p>Are you sure you want to delete your user <b>{{object}}</b>?</p>
-
-  <input type="submit" value="Confirm" id="confirm-button" />
-</form>
-
+<main>
+  <section>
+    <form id="confirm-form" method="POST">
+      {% csrf_token %}
+    
+      <p>Are you sure you want to delete your user <b>{{object}}</b>?</p>
+    
+      <input type="submit" value="Confirm" id="confirm-button" />
+    </form>
+  </section>
+</main>
+  
 {% endblock %}
