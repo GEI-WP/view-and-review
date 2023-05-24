@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block title %}
+<title>{{username}} - View & Review</title>
+{% endblock %}
+
 {% block links %}
 {% csrf_token %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
@@ -17,7 +21,6 @@
 <script src="{% static 'js/review.js' %}"></script>
 <script src="{% static 'js/stars.js' %}"></script>
 {% endblock %}
-
 
 {% block content %}
 <div class="profile-info">

@@ -1,4 +1,10 @@
-{% extends 'base_generic.html' %} {% block content %}
+{% extends 'base_generic.html' %} 
+
+{% block title %}
+<title>User Deletion - View & Review</title>
+{% endblock %}
+
+{% block content %}
 <form id="confirm-form" method="POST">
   {% csrf_token %}
 
